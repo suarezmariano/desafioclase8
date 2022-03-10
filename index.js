@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 
+const Contenedor = require('./Contenedor');
+const contenedor = new Contenedor();
+
 //SERVER
 const port = 8080;
 const server = app.listen(port, () => {
@@ -10,13 +13,18 @@ const server = app.listen(port, () => {
 
 server.on('error', (error) => console.log(`hubo un error ${error}`));
 
-app.use('/', router);
+app.use('/api/productos', router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const productos = [];
 
-router.get('/', (req, res) => {
+router.get('/new', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
+});
+
+router.get('/', (req, res) => {
+  const productos = contenedor.showAll();
+  res.json(productos);
 });
