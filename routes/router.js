@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
   newProduct.id = productos.length + 1;
   newProduct.title = req.body.title;
   newProduct.price = req.body.price;
-  newProduct.image = req.file.image;
+  newProduct.thumbnail = req.file.thumbnail;
   productos.push(newProduct);
   res.json(newProduct);
 });
