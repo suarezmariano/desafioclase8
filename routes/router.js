@@ -8,11 +8,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  let newProduct = {};
+  let newProduct;
   newProduct.id = productos.length + 1;
   newProduct.title = req.body.title;
   newProduct.price = req.body.price;
-  newProduct.thumbnail = req.file.thumbnail;
+  newProduct.thumbnail = req.body.thumbnail;
+  console.log(newProduct);
   productos.push(newProduct);
   res.json(newProduct);
 });

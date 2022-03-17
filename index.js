@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-
 const router = require('./routes/router');
-app.use('/api/productos', router);
 
 //SERVER
 const port = 8080;
@@ -14,3 +12,5 @@ server.on('error', (error) => console.log(`hubo un error ${error}`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+app.use('/api/productos', router);
