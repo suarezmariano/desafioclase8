@@ -10,6 +10,7 @@ class Product {
     this.thumbnail = thumbnail;
   }
 }
+
 router.get('/', (req, res) => {
   res.json(productos);
 });
@@ -20,13 +21,12 @@ router.post('/', (req, res) => {
   newProduct.title = req.body.title;
   newProduct.price = req.body.price;
   newProduct.thumbnail = req.body.thumbnail;
-  console.log(newProduct);
   productos.push(newProduct);
   res.json(newProduct);
 });
 
 router.get('/:id', (req, res) => {
-  const product = productos.filter((product) => product.id == req.params.id);
+  let product = productos.filter((product) => product.id == req.params.id);
   if (product != '') {
     res.json(product);
   } else {
@@ -46,9 +46,16 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const product = productos.filter((product) => product.id == req.params.id);
+  let product = productos.filter((product) => product.id == req.params.id);
   if (product != '') {
-    res.json(product);
+    productos = productos.filter((producto) => producto.id !== product.id);
+    let newProduct = new Product();
+    newProduct.id = product.id;
+    newProduct.title = req.body.title;
+    newProduct.price = req.body.price;
+    newProduct.thumbnail = req.body.thumbnail;
+    productos.push(newProduct);
+    res.json(newProduct);
   } else {
     res.json('Producto no encontrado');
   }
