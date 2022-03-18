@@ -37,8 +37,7 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   let id = productos.filter((product) => product.id == req.params.id);
   if (id != '') {
-    let products = productos.filter((product) => product.id != req.params.id);
-    productos = products;
+    productos = productos.filter((product) => product.id != req.params.id);
     res.json('Producto eliminado');
   } else {
     res.json('Producto no encontrado');
@@ -46,11 +45,11 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  let product = productos.filter((product) => product.id == req.params.id);
-  if (product != '') {
-    productos = productos.filter((producto) => producto.id !== product.id);
+  let id = productos.filter((product) => product.id == req.params.id);
+  if (id != '') {
+    productos = productos.filter((product) => product.id != req.params.id);
     let newProduct = new Product();
-    newProduct.id = product.id;
+    newProduct.id = req.params.id;
     newProduct.title = req.body.title;
     newProduct.price = req.body.price;
     newProduct.thumbnail = req.body.thumbnail;
