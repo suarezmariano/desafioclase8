@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   let newProduct = new Product();
+  newProduct = {};
   newProduct.id = productos.length + 1;
   newProduct.title = req.body.title;
   newProduct.price = req.body.price;
