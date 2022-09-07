@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
   if (product != '') {
     res.json(product);
   } else {
-    res.json('Producto no encontrado');
+    res.json('error: producto no encontrado');
   }
 });
 
